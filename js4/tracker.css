@@ -1,0 +1,9 @@
+li {
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.completed {
+    color: green;
+    text-decoration: line-through;
+}
