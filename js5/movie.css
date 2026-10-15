@@ -1,0 +1,75 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: #eaf2ff;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 550px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px #cccccc;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #243b64;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+}
+
+input, select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+}
+
+button {
+    margin-top: 12px;
+    padding: 11px;
+    border: none;
+    border-radius: 6px;
+    background: #2459c4;
+    color: white;
+    cursor: pointer;
+}
+
+.reset {
+    background: #666;
+}
+
+.booking {
+    margin-top: 12px;
+    padding: 12px;
+    background: #f1f5ff;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+.cancel {
+    background: #d93636;
+}
+
+#message {
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+}
