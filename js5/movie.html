@@ -9,53 +9,38 @@
 </head>
 <body>
 
-    <div class="container">
-        <h1>🎬 Movie Ticket Booking</h1>
+    <header>
+        <h1>Movie Ticket Booking</h1>
 
-        <form id="bookingForm">
-            <label>Select Movie</label>
-            <select id="movie" required>
-                <option value="150">Leo - ₹150</option>
-                <option value="200">Vikram - ₹200</option>
-                <option value="250">Jailer - ₹250</option>
-            </select>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#booked">Book Tickets</a></li>
+                <li><a href="#bookings">My Bookings</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <label>Showtime</label>
-            <select id="showtime" required>
-                <option value="10:00 AM">10:00 AM</option>
-                <option value="2:00 PM">2:00 PM</option>
-                <option value="6:00 PM">6:00 PM</option>
-            </select>
+    <main id="home">
+        <section class="welcome">
+            <h2>Welcome to Movie Booking</h2>
+            <p>Choose your favourite movie and book your tickets!</p>
+        </section>
 
-            <label>Number of Tickets</label>
-            <input type="number" id="quantity"
-                   min="1" step="1" value="1" required>
+        <div class="booking-layout">
+            <section id="booked" class="booking-form">
+                <!-- JavaScript inserts the booking form here -->
+            </section>
 
-            <label>Email Address</label>
-            <input type="email" id="email"
-                   placeholder="Enter your email" required>
+            <section id="bookings" class="bookings-list">
+                <!-- JavaScript inserts the booking list here -->
+            </section>
+        </div>
+    </main>
 
-            <h3 id="total">Total: ₹150</h3>
-
-            <button type="submit" id="bookButton">
-                Book Tickets
-            </button>
-
-            <button type="reset" class="reset">
-                Reset Form
-            </button>
-        </form>
-
-        <p id="message" role="status"></p>
-
-        <h2>Your Bookings</h2>
-        <p>Total Bookings: <span id="count">0</span></p>
-
-        <input type="text" id="search"
-               placeholder="Search by movie or email" autocomplete="off">
-
-        <div id="bookingList"></div>
-    </div>
+    <footer>
+        <p>&copy; 2026 Movie Ticket Booking</p>
+    </footer>
 
     <script src="movie.js"></script>
 </body>
