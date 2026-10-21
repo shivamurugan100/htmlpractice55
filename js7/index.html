@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendSmart | Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="js/app.js"></script>
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">₹</div>
+                <div>
+                    <h2>SpendSmart</h2>
+                    <p>Personal Finance</p>
+                </div>
+            </div>
+
+            <p class="menu-heading">WORKSPACE</p>
+            <a href="#dashboard" class="nav-link active">▦ &nbsp; Dashboard</a>
+            <a href="#add-expense" class="nav-link">＋ &nbsp; Add Expense</a>
+            <a href="#transactions" class="nav-link">▤ &nbsp; Transactions</a>
+            <a href="#budget-section" class="nav-link">◎ &nbsp; Monthly Budget</a>
+
+            <div class="sidebar-note">
+                <span>💡</span>
+                <h3>Smart spending tip</h3>
+                <p>Small expenses add up. Track every purchase to stay in control of your money.</p>
+            </div>
+
+            <div class="sidebar-footer">Spend wisely. Live better.</div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">PERSONAL FINANCE</p>
+                    <h1>Dashboard</h1>
+                    <p id="todayText" class="muted"></p>
+                </div>
+                <div class="top-actions">
+                    <button id="exportBtn" class="button secondary">↓ Export JSON</button>
+                    <label for="importFile" class="button secondary file-label">
+                        ↑ Import JSON
+                    </label>
+                    <input type="file" id="importFile" accept=".json,application/json" hidden>
+                </div>
+            </header>
+
+            <section id="dashboard" class="summary-grid">
+                <article class="summary-card">
+                    <div class="card-top">
+                        <span class="card-label">This month's spending</span>
+                        <span class="card-icon purple">₹</span>
+                    </div>
+                    <h2 id="monthlySpending">₹0.00</h2>
+                    <p class="muted">Expenses in the current month</p>
+                </article>
+
+                <article class="summary-card">
+                    <div class="card-top">
+                        <span class="card-label">Total expenses this month</span>
+                        <span class="card-icon blue">▤</span>
+                    </div>
+                    <h2 id="monthlyCount">0</h2>
+                    <p class="muted">Number of recorded expenses</p>
+                </article>
+
+                <article class="summary-card">
+                    <div class="card-top">
+                        <span class="card-label">Remaining budget</span>
+                        <span class="card-icon green">↗</span>
+                    </div>
+                    <h2 id="remainingBudget">₹0.00</h2>
+                    <p id="budgetStatus" class="muted">Set your monthly budget</p>
+                </article>
+            </section>
+
+            <section id="budget-section" class="panel budget-panel">
+                <div class="section-heading">
+                    <div>
+                        <h2>Monthly budget</h2>
+                        <p class="muted">Set a spending limit for this month</p>
+                    </div>
+                    <span class="budget-badge">MONTHLY PLAN</span>
+                </div>
+
+                <form id="budgetForm" class="budget-form">
+                    <div class="field budget-field">
+                        <label for="budgetInput">Budget amount (₹)</label>
+                        <input type="number" id="budgetInput" min="0.01"
+                               step="0.01" placeholder="e.g. 15000" required>
+                    </div>
+                    <button type="submit" class="button primary">Save Budget</button>
+                </form>
+
+                <div class="progress-info">
+                    <span id="budgetProgressText">₹0 spent</span>
+                    <span id="budgetPercent">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div id="budgetProgressBar" class="progress-bar"></div>
+                </div>
+                <p id="budgetWarning" class="warning" hidden></p>
+            </section>
+
+            <section id="add-expense" class="panel">
+                <div class="section-heading">
+                    <div>
+                        <h2>Add a new expense</h2>
+                        <p class="muted">Record where your money goes</p>
+                    </div>
+                    <span class="section-icon">＋</span>
+                </div>
+
+                <form id="expenseForm">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="expenseName">Expense name</label>
+                            <input type="text" id="expenseName"
+                                   placeholder="e.g. Lunch with friends"
+                                   maxlength="100" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="expenseAmount">Amount (₹)</label>
+                            <input type="number" id="expenseAmount"
+                                   placeholder="0.00" min="0.01"
+                                   step="0.01" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="expenseCategory">Category</label>
+                            <select id="expenseCategory" required>
+                                <option value="Food">🍔 Food</option>
+                                <option value="Travel">🚗 Travel</option>
+                                <option value="Shopping">🛍 Shopping</option>
+                                <option value="Other">📦 Other</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="expenseDate">Date</label>
+                            <input type="date" id="expenseDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-bottom">
+                        <p id="formMessage" role="status" aria-live="polite"></p>
+                        <button type="submit" class="button primary">＋ Add Expense</button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="transactions" class="panel">
+                <div class="section-heading">
+                    <div>
+                        <h2>Recent transactions</h2>
+                        <p class="muted">Search, filter, sort, and manage expenses</p>
+                    </div>
+                    <button id="clearAllBtn" class="button danger-outline">
+                        Clear All
+                    </button>
+                </div>
+
+                <div class="toolbar">
+                    <div class="search-box">
+                        <span>⌕</span>
+                        <input type="search" id="searchInput"
+                               placeholder="Search expenses by name...">
+                    </div>
+
+                    <select id="categoryFilter" aria-label="Filter by category">
+                        <option value="All">All categories</option>
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <select id="sortOrder" aria-label="Sort expenses by date">
+                        <option value="newest">Newest first</option>
+                        <option value="oldest">Oldest first</option>
+                    </select>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>EXPENSE</th>
+                                <th>CATEGORY</th>
+                                <th>DATE</th>
+                                <th>AMOUNT</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expenseTableBody"></tbody>
+                    </table>
+                </div>
+                <p id="emptyMessage" class="empty-message">
+                    No expenses yet. Add your first expense above.
+                </p>
+                <div class="table-footer">
+                    <span id="tableCount">0 expenses</span>
+                    <span id="tableTotal">Total: ₹0.00</span>
+                </div>
+            </section>
+
+            <section class="panel currency-panel">
+                <div>
+                    <h2>INR to USD converter</h2>
+                    <p class="muted">Convert this month's spending using a live exchange rate.</p>
+                </div>
+                <div class="currency-result">
+                    <div>
+                        <span class="muted">Monthly spending in USD</span>
+                        <h2 id="usdAmount">Not loaded</h2>
+                    </div>
+                    <button id="convertBtn" class="button secondary">
+                        ↻ Update rate
+                    </button>
+                </div>
+                <p id="currencyMessage" class="muted" role="status"></p>
+            </section>
+
+            <footer class="page-footer">
+                SpendSmart · Keep track of every rupee.
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
