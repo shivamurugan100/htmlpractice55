@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineBook - Movie Ticket Booking</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <a class="logo" href="#">🎬 CineBook</a>
+        <span class="header-note">Your movie night starts here</span>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">MOVIE TICKET BOOKING</p>
+            <h1>Lights. Camera. <span>Book!</span></h1>
+            <p>Choose your movie, reserve your seats, and enjoy the show.</p>
+        </section>
+
+        <section class="stats">
+            <article class="stat-card">
+                <span class="stat-icon">🎟️</span>
+                <div>
+                    <p>Total bookings</p>
+                    <h2 id="bookingCount">0</h2>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-icon">🎥</span>
+                <div>
+                    <p>Movies available</p>
+                    <h2 id="movieCount">3</h2>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel booking-panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Book your tickets</h2>
+                    <p>Select your movie and booking details below.</p>
+                </div>
+                <span class="heading-icon">＋</span>
+            </div>
+
+            <form id="bookingForm">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="movie">Select movie</label>
+                        <select id="movie" required>
+                            <option value="avengers">Avengers: Endgame — ₹280</option>
+                            <option value="avatar">Avatar: The Way of Water — ₹300</option>
+                            <option value="godzilla">Godzilla x Kong — ₹250</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="showtime">Showtime</label>
+                        <select id="showtime" required>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="1:30 PM">1:30 PM</option>
+                            <option value="4:30 PM">4:30 PM</option>
+                            <option value="7:00 PM">7:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="quantity">Number of tickets</label>
+                        <input type="number" id="quantity" min="1"
+                               max="10" step="1" value="1" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email address</label>
+                        <input type="email" id="email"
+                               placeholder="you@example.com"
+                               autocomplete="email" maxlength="254" required>
+                    </div>
+                </div>
+
+                <div class="price-box">
+                    <div>
+                        <p>Price per ticket</p>
+                        <h3 id="unitPrice">₹280.00</h3>
+                    </div>
+                    <div class="price-symbol">×</div>
+                    <div>
+                        <p>Tickets</p>
+                        <h3 id="ticketDisplay">1</h3>
+                    </div>
+                    <div class="price-divider"></div>
+                    <div class="total-price">
+                        <p>Total price</p>
+                        <h2 id="totalPrice">₹280.00</h2>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <p id="formMessage" role="status" aria-live="polite"></p>
+                    <div class="button-group">
+                        <button type="reset" class="button secondary">Reset form</button>
+                        <button type="submit" id="bookButton" class="button primary">
+                            Confirm booking →
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Your bookings</h2>
+                    <p>Search your reservations or cancel a booking.</p>
+                </div>
+                <span class="booking-pill"><span id="listCount">0</span> bookings</span>
+            </div>
+
+            <div class="filters">
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input type="search" id="searchInput"
+                           placeholder="Search by movie or email...">
+                </div>
+
+                <select id="movieFilter" aria-label="Filter by movie">
+                    <option value="all">All movies</option>
+                    <option value="avengers">Avengers: Endgame</option>
+                    <option value="avatar">Avatar: The Way of Water</option>
+                    <option value="godzilla">Godzilla x Kong</option>
+                </select>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>MOVIE & EMAIL</th>
+                            <th>SHOWTIME</th>
+                            <th>TICKETS</th>
+                            <th>TOTAL</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingList"></tbody>
+                </table>
+            </div>
+
+            <p id="emptyMessage" class="empty-message">
+                No bookings yet. Book your first movie above!
+            </p>
+        </section>
+
+        <footer>
+            <p>© 2026 CineBook · Made for movie lovers 🍿</p>
+        </footer>
+    </main>
+</body>
+</html>
